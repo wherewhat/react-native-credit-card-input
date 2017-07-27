@@ -10,8 +10,8 @@ import ReactNative, {
 
 import CCInput from "./CCInput";
 import { InjectedProps } from "./connectToState";
-import AppConstants from "../../../../common/constants";
-import ImageConstants from '../../../../common/image-constants';
+import AppConstants from "./constants";
+import ImageConstants from './image-constants';
 
 const s = StyleSheet.create({
   container: {
