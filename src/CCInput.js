@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Image
 } from "react-native";
 
 const s = StyleSheet.create({
@@ -34,7 +35,6 @@ export default class CCInput extends Component {
     onChange: PropTypes.func,
     onBecomeEmpty: PropTypes.func,
     onBecomeValid: PropTypes.func,
-    additionalInputProps: PropTypes.shape(TextInput.propTypes),
   };
 
   static defaultProps = {
@@ -49,7 +49,6 @@ export default class CCInput extends Component {
     onChange: () => {},
     onBecomeEmpty: () => {},
     onBecomeValid: () => {},
-    additionalInputProps: {},
   };
 
   componentWillReceiveProps = newProps => {
@@ -68,15 +67,15 @@ export default class CCInput extends Component {
   render() {
     const { label, value, placeholder, status, keyboardType,
             containerStyle, inputStyle, labelStyle,
-            validColor, invalidColor, placeholderColor,
-            additionalInputProps } = this.props;
+            validColor, invalidColor, placeholderColor } = this.props;
     return (
       <TouchableOpacity onPress={this.focus}
           activeOpacity={0.99}>
         <View style={[containerStyle]}>
           { !!label && <Text style={[labelStyle]}>{label}</Text>}
+          <View style={{flex:1,flexDirection:'row'}}>
+          <View style={{flex:1}}>
           <TextInput ref="input"
-              {...additionalInputProps}
               keyboardType={keyboardType}
               autoCapitalise="words"
               autoCorrect={false}
@@ -93,6 +92,11 @@ export default class CCInput extends Component {
               value={value}
               onFocus={this._onFocus}
               onChangeText={this._onChange} />
+          </View>
+          <View style={{marginRight:35}}>
+          <Image source={this.props.img} />
+          </View>
+          </View>
         </View>
       </TouchableOpacity>
     );
